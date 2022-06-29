@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HikiComicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Code" Type="nchar" MaxLength="200" Nullable="false" />
+    <Property Name="Active" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Chapter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdManhwa" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Create_date" Type="datetime" Nullable="false" />
+    <Property Name="HightLightChapter" Type="int" Nullable="false" />
+    <Property Name="Views" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Manhwa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UrlImageManhwa" Type="nchar" MaxLength="300" Nullable="false" />
+    <Property Name="UrlCoverImage" Type="nchar" MaxLength="300" />
+    <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Author" Type="nvarchar" MaxLength="500" />
+    <Property Name="Category" Type="nvarchar" MaxLength="300" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Create_date" Type="datetime" Nullable="false" />
+    <Property Name="Views" Type="int" Nullable="false" />
+    <Property Name="Likes" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UrlImageManhwa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdChapter" Type="int" Nullable="false" />
+    <Property Name="UrlImage" Type="varchar" MaxLength="7800" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Chapter__IdManhw__3A81B327">
+    <End Role="Manhwa" Type="Self.Manhwa" Multiplicity="1" />
+    <End Role="Chapter" Type="Self.Chapter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manhwa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Chapter">
+        <PropertyRef Name="IdManhwa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UrlImageM__IdCha__3D5E1FD2">
+    <End Role="Chapter" Type="Self.Chapter" Multiplicity="1" />
+    <End Role="UrlImageManhwa" Type="Self.UrlImageManhwa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chapter">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UrlImageManhwa">
+        <PropertyRef Name="IdChapter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HikiComicModelStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Chapter" EntityType="Self.Chapter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Manhwa" EntityType="Self.Manhwa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UrlImageManhwa" EntityType="Self.UrlImageManhwa" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Chapter__IdManhw__3A81B327" Association="Self.FK__Chapter__IdManhw__3A81B327">
+      <End Role="Manhwa" EntitySet="Manhwa" />
+      <End Role="Chapter" EntitySet="Chapter" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UrlImageM__IdCha__3D5E1FD2" Association="Self.FK__UrlImageM__IdCha__3D5E1FD2">
+      <End Role="Chapter" EntitySet="Chapter" />
+      <End Role="UrlImageManhwa" EntitySet="UrlImageManhwa" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

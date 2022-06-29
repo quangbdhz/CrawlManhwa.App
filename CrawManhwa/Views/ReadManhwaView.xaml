@@ -1,0 +1,67 @@
+﻿<Window x:Class="CrawManhwa.Views.ReadManhwaView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrawManhwa.Views"
+        mc:Ignorable="d"
+
+        Icon="/Images/Comic_Icon.ico"
+        
+        WindowStartupLocation="CenterScreen"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:userControl="clr-namespace:CrawManhwa.MyUserControl"
+        
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        
+        Title="Read Comic" Height="700" Width="1305">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Column="0">
+            <TextBlock FontSize="15" Foreground="Black" FontWeight="Bold" Text="Read Manhwa" Margin="10 5"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <ScrollViewer  PreviewMouseWheel="LvManhwaScrollViewer_PreviewMouseWheel" VerticalScrollBarVisibility="Auto">
+                <ListView Name="Lv_Manhwa" Margin="0 0"  ItemsSource="{Binding LvNameManhwa}">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Margin="0 0 0 0"
+                                    Width="{Binding (FrameworkElement.ActualWidth), 
+                                    RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}"
+                                    ItemWidth="{Binding (ListView.View).ItemWidth, 
+                                    RelativeSource={RelativeSource AncestorType=ListView}}"
+                                    MinWidth="{Binding ItemWidth, RelativeSource={RelativeSource Self}}"
+                                    ItemHeight="{Binding (ListView.View).ItemHeight, 
+                                    RelativeSource={RelativeSource AncestorType=ListView}}"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <userControl:CardManhwa Width="170" Height="250" BackgroundManhwa="{Binding UrlCoverImageComic}" NameManhwa="{Binding NameComic}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseUp">
+                            <i:InvokeCommandAction Command="{Binding SelectedManhwaReadCommand}" CommandParameter="{Binding ElementName=Lv_Manhwa, Path=SelectedItem}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ListView>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>

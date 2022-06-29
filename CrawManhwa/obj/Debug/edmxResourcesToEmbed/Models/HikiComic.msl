@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HikiComicModelStoreContainer" CdmEntityContainer="ServerHikiComicEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="HikiComicModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Chapters">
+      <EntityTypeMapping TypeName="HikiComicModel.Chapter">
+        <MappingFragment StoreEntitySet="Chapter">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdManhwa" ColumnName="IdManhwa" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Create_date" ColumnName="Create_date" />
+          <ScalarProperty Name="HightLightChapter" ColumnName="HightLightChapter" />
+          <ScalarProperty Name="Views" ColumnName="Views" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Manhwas">
+      <EntityTypeMapping TypeName="HikiComicModel.Manhwa">
+        <MappingFragment StoreEntitySet="Manhwa">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UrlImageManhwa" ColumnName="UrlImageManhwa" />
+          <ScalarProperty Name="UrlCoverImage" ColumnName="UrlCoverImage" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Create_date" ColumnName="Create_date" />
+          <ScalarProperty Name="Views" ColumnName="Views" />
+          <ScalarProperty Name="Likes" ColumnName="Likes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UrlImageManhwas">
+      <EntityTypeMapping TypeName="HikiComicModel.UrlImageManhwa">
+        <MappingFragment StoreEntitySet="UrlImageManhwa">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdChapter" ColumnName="IdChapter" />
+          <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

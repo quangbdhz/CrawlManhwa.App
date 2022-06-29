@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ManhwaComicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="NameManhwa">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="UrlImgaeManhwas" Relationship="Self.FK_IdNameManhwa_UrlImgaeManhwa_TO_Id_NameManhwa" FromRole="NameManhwa" ToRole="UrlImgaeManhwa" />
+  </EntityType>
+  <EntityType Name="UrlImgaeManhwa">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdNameManhwa" Type="Int32" Nullable="false" />
+    <Property Name="UrlImage" Type="String" MaxLength="500" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="NameManhwa" Relationship="Self.FK_IdNameManhwa_UrlImgaeManhwa_TO_Id_NameManhwa" FromRole="UrlImgaeManhwa" ToRole="NameManhwa" />
+  </EntityType>
+  <Association Name="FK_IdNameManhwa_UrlImgaeManhwa_TO_Id_NameManhwa">
+    <End Role="NameManhwa" Type="Self.NameManhwa" Multiplicity="1" />
+    <End Role="UrlImgaeManhwa" Type="Self.UrlImgaeManhwa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NameManhwa">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UrlImgaeManhwa">
+        <PropertyRef Name="IdNameManhwa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ManhwaComicEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="NameManhwas" EntityType="Self.NameManhwa" />
+    <EntitySet Name="UrlImgaeManhwas" EntityType="Self.UrlImgaeManhwa" />
+    <AssociationSet Name="FK_IdNameManhwa_UrlImgaeManhwa_TO_Id_NameManhwa" Association="Self.FK_IdNameManhwa_UrlImgaeManhwa_TO_Id_NameManhwa">
+      <End Role="NameManhwa" EntitySet="NameManhwas" />
+      <End Role="UrlImgaeManhwa" EntitySet="UrlImgaeManhwas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

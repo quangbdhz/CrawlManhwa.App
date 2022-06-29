@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ComicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__EFMigrationsHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AppRoleClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AppRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="200" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="NormalizedName" Type="nvarchar(max)" />
+    <Property Name="ConcurrencyStamp" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AppUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AppUserLogins">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LoginProvider" Type="nvarchar(max)" />
+    <Property Name="ProviderKey" Type="nvarchar(max)" />
+    <Property Name="ProviderDisplayName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AppUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AppUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Dob" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UrlImageUser" Type="varchar" MaxLength="1000" />
+    <Property Name="MoreInfo" Type="nvarchar" MaxLength="1000" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="GenderId" Type="int" Nullable="false" />
+    <Property Name="RefreshToken" Type="varchar" MaxLength="1000" />
+    <Property Name="TokenCreated" Type="datetime2" Precision="7" />
+    <Property Name="TokenExpires" Type="datetime2" Precision="7" />
+    <Property Name="UserName" Type="nvarchar(max)" />
+    <Property Name="NormalizedUserName" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="NormalizedEmail" Type="nvarchar(max)" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="ConcurrencyStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEnd" Type="datetimeoffset" Precision="7" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AppUserTokens">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LoginProvider" Type="nvarchar(max)" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Value" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AuthorInDetailComics">
+    <Key>
+      <PropertyRef Name="AuthorId" />
+      <PropertyRef Name="DetailComicId" />
+    </Key>
+    <Property Name="AuthorId" Type="int" Nullable="false" />
+    <Property Name="DetailComicId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Authors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameAuthor" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="DifferentName" Type="nvarchar" MaxLength="150" />
+    <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="SeoAlias" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsShowHome" Type="bit" Nullable="false" />
+    <Property Name="UrlImageCategory" Type="varchar" MaxLength="300" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategoryInDetailComics">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+      <PropertyRef Name="DetailComicId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="DetailComicId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ChapterComics">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ComicId" Type="int" Nullable="false" />
+    <Property Name="NameChapter" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ViewCount" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="SeoAlias" Type="varchar" MaxLength="300" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comics">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameComic" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="DifferentNameComic" Type="nvarchar" MaxLength="200" />
+    <Property Name="ViewCount" Type="int" Nullable="false" />
+    <Property Name="UrlCoverImageComic" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IdNewChapter" Type="int" />
+  </EntityType>
+  <EntityType Name="DetailCategories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="NameCategory" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SeoDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="SeoTitle" Type="nvarchar" MaxLength="150" />
+    <Property Name="SeoAlias" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DetailComics">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ComicId" Type="int" Nullable="false" />
+    <Property Name="StatusId" Type="int" Nullable="false" />
+    <Property Name="CountFollow" Type="int" Nullable="false" />
+    <Property Name="CountRating" Type="int" Nullable="false" />
+    <Property Name="Rating" Type="float" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="3800" Nullable="false" />
+    <Property Name="SeoDescription" Type="nvarchar" MaxLength="1000" />
+    <Property Name="SeoTitle" Type="nvarchar" MaxLength="200" />
+    <Property Name="SeoAlias" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Genders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameGender" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HistoryReadComicOfUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AppUserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ComicId" Type="int" Nullable="false" />
+    <Property Name="ChapterId" Type="int" Nullable="false" />
+    <Property Name="DateRead" Type="datetime2" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ListOfComicsUsersFollows">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AppUserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ComicId" Type="int" Nullable="false" />
+    <Property Name="DateFollow" Type="datetime2" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Statuses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameStatus" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UrlImageComics">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChapterComicId" Type="int" Nullable="false" />
+    <Property Name="UrlImageChapterComic" Type="varchar" MaxLength="7800" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AppUsers_Genders_GenderId">
+    <End Role="Genders" Type="Self.Genders" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AppUsers" Type="Self.AppUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AppUsers">
+        <PropertyRef Name="GenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AuthorInDetailComics_Authors_AuthorId">
+    <End Role="Authors" Type="Self.Authors" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AuthorInDetailComics" Type="Self.AuthorInDetailComics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Authors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AuthorInDetailComics">
+        <PropertyRef Name="AuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AuthorInDetailComics_DetailComics_DetailComicId">
+    <End Role="DetailComics" Type="Self.DetailComics" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AuthorInDetailComics" Type="Self.AuthorInDetailComics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DetailComics">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AuthorInDetailComics">
+        <PropertyRef Name="DetailComicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CategoryInDetailComics_Categories_CategoryId">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CategoryInDetailComics" Type="Self.CategoryInDetailComics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CategoryInDetailComics">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CategoryInDetailComics_DetailComics_DetailComicId">
+    <End Role="DetailComics" Type="Self.DetailComics" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CategoryInDetailComics" Type="Self.CategoryInDetailComics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DetailComics">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CategoryInDetailComics">
+        <PropertyRef Name="DetailComicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetailCategories_Categories_CategoryId">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DetailCategories" Type="Self.DetailCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DetailCategories">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetailComics_Comics_ComicId">
+    <End Role="Comics" Type="Self.Comics" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DetailComics" Type="Self.DetailComics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comics">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DetailComics">
+        <PropertyRef Name="ComicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetailComics_Statuses_StatusId">
+    <End Role="Statuses" Type="Self.Statuses" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DetailComics" Type="Self.DetailComics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DetailComics">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HistoryReadComicOfUsers_AppUsers_AppUserId">
+    <End Role="AppUsers" Type="Self.AppUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="HistoryReadComicOfUsers" Type="Self.HistoryReadComicOfUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HistoryReadComicOfUsers">
+        <PropertyRef Name="AppUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HistoryReadComicOfUsers_ChapterComics_ChapterId">
+    <End Role="ChapterComics" Type="Self.ChapterComics" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="HistoryReadComicOfUsers" Type="Self.HistoryReadComicOfUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChapterComics">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HistoryReadComicOfUsers">
+        <PropertyRef Name="ChapterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HistoryReadComicOfUsers_Comics_ComicId">
+    <End Role="Comics" Type="Self.Comics" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="HistoryReadComicOfUsers" Type="Self.HistoryReadComicOfUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comics">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HistoryReadComicOfUsers">
+        <PropertyRef Name="ComicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ListOfComicsUsersFollows_AppUsers_AppUserId">
+    <End Role="AppUsers" Type="Self.AppUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ListOfComicsUsersFollows" Type="Self.ListOfComicsUsersFollows" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ListOfComicsUsersFollows">
+        <PropertyRef Name="AppUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ListOfComicsUsersFollows_Comics_ComicId">
+    <End Role="Comics" Type="Self.Comics" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ListOfComicsUsersFollows" Type="Self.ListOfComicsUsersFollows" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comics">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ListOfComicsUsersFollows">
+        <PropertyRef Name="ComicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UrlImageComics_ChapterComics_ChapterComicId">
+    <End Role="ChapterComics" Type="Self.ChapterComics" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UrlImageComics" Type="Self.UrlImageComics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChapterComics">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UrlImageComics">
+        <PropertyRef Name="ChapterComicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ComicModelStoreContainer">
+    <EntitySet Name="__EFMigrationsHistory" EntityType="Self.__EFMigrationsHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AppRoleClaims" EntityType="Self.AppRoleClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AppRoles" EntityType="Self.AppRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AppUserClaims" EntityType="Self.AppUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AppUserLogins" EntityType="Self.AppUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AppUserRoles" EntityType="Self.AppUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AppUsers" EntityType="Self.AppUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AppUserTokens" EntityType="Self.AppUserTokens" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AuthorInDetailComics" EntityType="Self.AuthorInDetailComics" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CategoryInDetailComics" EntityType="Self.CategoryInDetailComics" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChapterComics" EntityType="Self.ChapterComics" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comics" EntityType="Self.Comics" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DetailCategories" EntityType="Self.DetailCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DetailComics" EntityType="Self.DetailComics" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Genders" EntityType="Self.Genders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HistoryReadComicOfUsers" EntityType="Self.HistoryReadComicOfUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ListOfComicsUsersFollows" EntityType="Self.ListOfComicsUsersFollows" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UrlImageComics" EntityType="Self.UrlImageComics" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AppUsers_Genders_GenderId" Association="Self.FK_AppUsers_Genders_GenderId">
+      <End Role="Genders" EntitySet="Genders" />
+      <End Role="AppUsers" EntitySet="AppUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AuthorInDetailComics_Authors_AuthorId" Association="Self.FK_AuthorInDetailComics_Authors_AuthorId">
+      <End Role="Authors" EntitySet="Authors" />
+      <End Role="AuthorInDetailComics" EntitySet="AuthorInDetailComics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AuthorInDetailComics_DetailComics_DetailComicId" Association="Self.FK_AuthorInDetailComics_DetailComics_DetailComicId">
+      <End Role="DetailComics" EntitySet="DetailComics" />
+      <End Role="AuthorInDetailComics" EntitySet="AuthorInDetailComics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CategoryInDetailComics_Categories_CategoryId" Association="Self.FK_CategoryInDetailComics_Categories_CategoryId">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="CategoryInDetailComics" EntitySet="CategoryInDetailComics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CategoryInDetailComics_DetailComics_DetailComicId" Association="Self.FK_CategoryInDetailComics_DetailComics_DetailComicId">
+      <End Role="DetailComics" EntitySet="DetailComics" />
+      <End Role="CategoryInDetailComics" EntitySet="CategoryInDetailComics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetailCategories_Categories_CategoryId" Association="Self.FK_DetailCategories_Categories_CategoryId">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="DetailCategories" EntitySet="DetailCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetailComics_Comics_ComicId" Association="Self.FK_DetailComics_Comics_ComicId">
+      <End Role="Comics" EntitySet="Comics" />
+      <End Role="DetailComics" EntitySet="DetailComics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetailComics_Statuses_StatusId" Association="Self.FK_DetailComics_Statuses_StatusId">
+      <End Role="Statuses" EntitySet="Statuses" />
+      <End Role="DetailComics" EntitySet="DetailComics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HistoryReadComicOfUsers_AppUsers_AppUserId" Association="Self.FK_HistoryReadComicOfUsers_AppUsers_AppUserId">
+      <End Role="AppUsers" EntitySet="AppUsers" />
+      <End Role="HistoryReadComicOfUsers" EntitySet="HistoryReadComicOfUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HistoryReadComicOfUsers_ChapterComics_ChapterId" Association="Self.FK_HistoryReadComicOfUsers_ChapterComics_ChapterId">
+      <End Role="ChapterComics" EntitySet="ChapterComics" />
+      <End Role="HistoryReadComicOfUsers" EntitySet="HistoryReadComicOfUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HistoryReadComicOfUsers_Comics_ComicId" Association="Self.FK_HistoryReadComicOfUsers_Comics_ComicId">
+      <End Role="Comics" EntitySet="Comics" />
+      <End Role="HistoryReadComicOfUsers" EntitySet="HistoryReadComicOfUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ListOfComicsUsersFollows_AppUsers_AppUserId" Association="Self.FK_ListOfComicsUsersFollows_AppUsers_AppUserId">
+      <End Role="AppUsers" EntitySet="AppUsers" />
+      <End Role="ListOfComicsUsersFollows" EntitySet="ListOfComicsUsersFollows" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ListOfComicsUsersFollows_Comics_ComicId" Association="Self.FK_ListOfComicsUsersFollows_Comics_ComicId">
+      <End Role="Comics" EntitySet="Comics" />
+      <End Role="ListOfComicsUsersFollows" EntitySet="ListOfComicsUsersFollows" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UrlImageComics_ChapterComics_ChapterComicId" Association="Self.FK_UrlImageComics_ChapterComics_ChapterComicId">
+      <End Role="ChapterComics" EntitySet="ChapterComics" />
+      <End Role="UrlImageComics" EntitySet="UrlImageComics" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

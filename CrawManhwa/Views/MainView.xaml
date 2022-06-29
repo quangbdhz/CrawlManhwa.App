@@ -1,0 +1,342 @@
+﻿<Window x:Class="CrawManhwa.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrawManhwa.Views"
+        mc:Ignorable="d"
+
+        Icon="/Images/Comic_Icon.ico"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        
+        WindowStartupLocation="CenterScreen"
+        
+        Title="Home" Height="700" Width="1305">
+    <Grid Background="#2d3436">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,5,0,5">
+            <materialDesign:Card Margin="5 0">
+                <Grid Margin="0 3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Margin="10 0 0 0" Padding="0" Command="{Binding UserManagerCommand}" Width="90" Foreground="Black" Background="#00d8d6" BorderBrush="Black" Content="Users"/>
+
+                    <Button Grid.Column="1" Margin="20 0 0 0" Padding="0" Command="{Binding AddManhwaCommand}" Width="90" Content="Add Comic" Foreground="Black" Background="#0be881" BorderBrush="Black" />
+
+                    <Button Grid.Column="2" Margin="20 0 0 0" Padding="0" Command="{Binding ReadManhwa}" Width="90" HorizontalAlignment="Right" Background="#ffdd59" Foreground="Black" BorderBrush="Black" Content="Read Comic"/>
+
+                    <Button Grid.Column="3" Margin="20 0 0 0" Padding="0" Command="{Binding CategoriesAndAuthorsManagerCommand}" Width="90" HorizontalAlignment="Right" Background="#FDA7DF" Foreground="Black" BorderBrush="Black" Content="Cate/Author"/>
+
+                </Grid>
+            </materialDesign:Card>
+
+            <materialDesign:Card Margin="5 5 5 0">
+                <Grid Margin="0 3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <CheckBox Command="{Binding CheckedCrawlUrlChapterCommand}" CommandParameter="{Binding ElementName=checkedCrawlUrlChapter}" Name="checkedCrawlUrlChapter"
+                        IsChecked="{Binding CheckedCrawlUrlChapter}" Margin="10 0 0 0" Content="Crawl Url Chapter" Grid.Column="0" Style="{StaticResource MaterialDesignFilterChipCheckBox}"/>
+
+                    <CheckBox Command="{Binding CheckedCrawlChapterCommand}" CommandParameter="{Binding ElementName=checkedCrawChapter}" Name="checkedCrawChapter"
+                        IsChecked="{Binding CheckedCrawlChapter}" Margin="20 0 0 0" Content="Crawl Chapter" Grid.Column="1" Style="{StaticResource MaterialDesignFilterChipCheckBox}"/>
+
+                    <TextBlock Margin="20 0" Grid.Column="2" VerticalAlignment="Center" FontSize="13" FontStyle="Italic" FontWeight="Bold" Text="Url In Line"/>
+
+                    <TextBox materialDesign:TextFieldAssist.DecorationVisibility="Collapsed" BorderThickness="0" Padding="0 0 0 3" FontSize="13"
+                        Grid.Column="3" Text="{Binding UrlInLine}" Margin="0 0 0 5" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+
+                    <TextBox materialDesign:TextFieldAssist.DecorationVisibility="Collapsed" BorderThickness="0" Width="Auto" FontSize="14" Foreground="White"
+                             VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
+                             Grid.Column="4" Padding="10 0" HorizontalAlignment="Right" FontWeight="Bold" Background="#5758BB" Text="{Binding ErrorUrlMaxLength}" Margin="0 0 30 5" VerticalAlignment="Bottom" />
+
+                </Grid>
+            </materialDesign:Card>
+
+
+            <materialDesign:Card Margin="5 5 5 0">
+                <StackPanel>
+                    <Grid Margin="0 5" Visibility="{Binding VisibilityControlCrawlChapterManhwa}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" VerticalAlignment="Center" FontSize="15" FontWeight="Bold"  Margin="10 0 0 0" Text="Url Detail Chapter "/>
+
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBox Grid.Column="0" Margin="20,0,20,0"  materialDesign:HintAssist.Hint="Start Chapter" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                    Text="{Binding StartChapterCraw}" HorizontalContentAlignment="Center"/>
+
+                                <TextBox Grid.Column="1" Margin="0,0,20,0" materialDesign:HintAssist.Hint="End Chapter" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                    Text="{Binding EndChapterCraw}" HorizontalContentAlignment="Center"/>
+
+                                <TextBox Grid.Column="2"  materialDesign:HintAssist.Hint="Start Url Chapter"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                    Text="{Binding StartUrlWebsite, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,20,0" HorizontalContentAlignment="Center"/>
+
+                                <TextBox Grid.Column="3"  materialDesign:HintAssist.Hint="End Url Chapter"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                    Text="{Binding EndUrlWebsite, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,20,0" HorizontalContentAlignment="Center"/>
+
+                                <TextBox Grid.Column="4"  materialDesign:HintAssist.Hint="Add Zero"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                    Text="{Binding AddZeroStartChapterCrawl, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,3,0" HorizontalContentAlignment="Center"/>
+                            </Grid>
+
+                            <Grid Grid.Row="1" Margin="0 10 0 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBox Grid.Column="0"  materialDesign:HintAssist.Hint="Attribute Tag"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                    Text="{Binding AttributeTag, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,20,0"  HorizontalContentAlignment="Center"/>
+
+                                <TextBox Grid.Column="2"  materialDesign:HintAssist.Hint="End Char Attribute"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                    Text="{Binding EndCharAttribute, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,20,0"/>
+
+                                <TextBox Grid.Column="3" materialDesign:HintAssist.Hint="Url Duplicate"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding UrlDuplicate, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <Button Grid.Column="4" Margin="20,2,20,3" Command="{Binding DeleteUrlDuplicateCommand}" Content="Submit"/>
+
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <Grid Margin="0 5 0 5" Visibility="{Binding VisibilityControlCrawlUrlChapterManhwa}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" VerticalAlignment="Center" FontSize="15" FontWeight="Bold"  Margin="10 0 0 0" Text="Url Comic "/>
+
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBox Margin="20 0 0 0" Grid.Column="0"  materialDesign:HintAssist.Hint="Url Manhwa"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                    Text="{Binding UrlCrawlFullManhwa, UpdateSourceTrigger=PropertyChanged}" MaxWidth="250" TextWrapping="Wrap"/>
+
+                                <TextBox Margin="20 0 0 0" Grid.Column="1"  materialDesign:HintAssist.Hint="IndexOf Url Manhwa"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                    Text="{Binding NameUrlManhwa, UpdateSourceTrigger=PropertyChanged}" MaxWidth="250" TextWrapping="Wrap"/>
+
+                                <TextBox Margin="20 0 0 0" Grid.Column="2"  materialDesign:HintAssist.Hint="Url Web Upload"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                    Text="{Binding UrlWebUploadImage, UpdateSourceTrigger=PropertyChanged}" MaxWidth="150" TextWrapping="Wrap"/>
+
+                                <TextBox Grid.Column="3"  materialDesign:HintAssist.Hint="Attribute Tag"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding AttributeTag, UpdateSourceTrigger=PropertyChanged}" Margin="20 0 20 0"/>
+
+                                <TextBox Grid.Column="4"  materialDesign:HintAssist.Hint="End Char Attribute"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding EndCharAttribute, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 20 0"/>
+
+
+                            </Grid>
+
+                            <Grid Grid.Row="1" Margin="0 10 0 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <ComboBox VerticalAlignment="Bottom" Grid.Column="0" SelectedIndex="1" materialDesign:ColorZoneAssist.Mode="Dark" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource MaterialDesignBody}"
+                                    Name="SortListChapterCrawl" Margin="20 0 20 0" BorderBrush="{DynamicResource MaterialDesignBody}">
+                                    <ComboBoxItem Content="Ascending"/>
+                                    <ComboBoxItem Content="Decrease"/>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="DropDownClosed">
+                                            <i:InvokeCommandAction Command="{Binding SelectedOptionSortListChapterCrawlCommand}"
+                                                           CommandParameter="{Binding ElementName=SortListChapterCrawl}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
+
+
+                                <ComboBox VerticalAlignment="Bottom" Grid.Column="1" SelectedIndex="0" materialDesign:ColorZoneAssist.Mode="Dark" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource MaterialDesignBody}"
+                                    Name="AddProtocolToUrl" Margin="0 0 20 0" BorderBrush="{DynamicResource MaterialDesignBody}">
+                                    <ComboBoxItem Content="Normal"/>
+                                    <ComboBoxItem Content="https:"/>
+                                    <ComboBoxItem Content="http:"/>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="DropDownClosed">
+                                            <i:InvokeCommandAction Command="{Binding SelectedAddProtocolToUrlCommand}"
+                                                           CommandParameter="{Binding ElementName=AddProtocolToUrl}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
+
+                                <!--<TextBox Grid.Column="2"  materialDesign:HintAssist.Hint="Url Duplicate"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding UrlDuplicate, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 20 0"/>
+
+
+                                <Button Grid.Column="3" Command="{Binding DeleteUrlDuplicateCommand}" Content="Submit"/>-->
+                            </Grid>
+                        </Grid>
+
+                        <TextBox materialDesign:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0" Padding="0"
+                            VerticalAlignment="Center" Grid.Column="2"  materialDesign:HintAssist.Hint="Delete Id Chapter" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding IdChapterDuplicate, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 20 0"/>
+
+                        <Button Width="100" Padding="0" BorderBrush="Black" Foreground="Black" Background="#C4E538"
+                            Command="{Binding DeleteChapterDuplicateCommand}" Margin="0 0 20 0" Grid.Column="3" Content="Delete"/>
+                    </Grid>
+                </StackPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card Margin="5 5 5 0">
+                <Grid Margin="0 3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Width="130" BorderThickness="1" Grid.Column="0" IsDefault="True" Margin="10 0 0 0 " Click="Button_Click" Background="#1dd1a1" FontWeight="Bold" BorderBrush="Black"
+                        Content="Submit Crawl" Command="{Binding SubmitUrlWebsite}"  Foreground="Black"/>
+
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Width="130" BorderThickness="1" Grid.Column="0" IsDefault="True" Margin="20 0 " Background="#ff3838" FontWeight="Bold" BorderBrush="Black"
+                            Content="Save Comic Crawl" Command="{Binding SaveDataToDatabaseCommand}" Padding="0" Foreground="Black"/>
+
+                        <ComboBox materialDesign:HintAssist.Hint="Name Comic" Padding="0 0 0 8"
+                                  BorderThickness="0" IsEditable="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Bottom" Name="cbx_ChooseManhwaAddChapter" MinWidth="50" Grid.Column="1" 
+                                  materialDesign:TextFieldAssist.DecorationVisibility="Collapsed" FontSize="13"
+                                  ItemsSource="{Binding LvNameManhwa}" DisplayMemberPath="NameComic" SelectedItem="{Binding SelectedItemManhwa, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 20 0">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="DropDownClosed">
+                                    <i:InvokeCommandAction Command="{Binding ChooseManhwaAddChapterCommand}"
+                              CommandParameter="{Binding ElementName=cbx_ChooseManhwaAddChapter}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Text="{Binding SelectedItemManhwa.NameComic}" Foreground="Red" Grid.Column="2"/>
+                    </Grid>
+                </Grid>
+            </materialDesign:Card>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <materialDesign:Card Grid.Column="0" Margin="5 0 0 5 ">
+                    <ScrollViewer  Name="ScrollLvFullUrlImageOneChapter" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <ListView Name="Lv_FullUrlImageOneChapter" ItemsSource="{Binding LvFullUrlImageOneChapter}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Serial" DisplayMemberBinding="{Binding Id}"/>
+                                    <GridViewColumn Header="Length">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Length}" Foreground="{Binding Length, Converter={StaticResource errorMaxLenghtUrlConverter}}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Url" DisplayMemberBinding="{Binding FullUrlImage}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ScrollViewer>
+                </materialDesign:Card>
+
+                <materialDesign:Card Width="280" Grid.Column="1" Margin="5 0 5 5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" Margin="0 2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Margin="5 0" Padding="0 8 0 0"
+                                     Grid.Column="0" Text="{Binding ReplaceNameChapter}" materialDesign:HintAssist.Hint="Replace Name Chapter"/>
+
+                            <Button Margin="10 0" Width="100" BorderBrush="Black" Background="#ED4C67" Foreground="Black"
+                                    Command="{Binding ReplaceNameChapterCommand}" Grid.Column="1" Content="Replace"/>
+                        </Grid>
+
+                        <ScrollViewer Grid.Row="1" Name="ScrollListChapter" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <ListView Name="Lv_Chapter" ItemsSource="{Binding LvChapterCrawl}">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding NameChapter}"/>
+                                        <GridViewColumn Header="Serial" DisplayMemberBinding="{Binding ComicId}"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </ScrollViewer>
+                    </Grid>
+                </materialDesign:Card>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

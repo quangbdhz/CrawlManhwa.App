@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ComicModelStoreContainer" CdmEntityContainer="ComicEntities">
+    <EntitySetMapping Name="C__EFMigrationsHistory">
+      <EntityTypeMapping TypeName="ComicModel.C__EFMigrationsHistory">
+        <MappingFragment StoreEntitySet="__EFMigrationsHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppRoleClaims">
+      <EntityTypeMapping TypeName="ComicModel.AppRoleClaim">
+        <MappingFragment StoreEntitySet="AppRoleClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppRoles">
+      <EntityTypeMapping TypeName="ComicModel.AppRole">
+        <MappingFragment StoreEntitySet="AppRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NormalizedName" ColumnName="NormalizedName" />
+          <ScalarProperty Name="ConcurrencyStamp" ColumnName="ConcurrencyStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppUserClaims">
+      <EntityTypeMapping TypeName="ComicModel.AppUserClaim">
+        <MappingFragment StoreEntitySet="AppUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppUserLogins">
+      <EntityTypeMapping TypeName="ComicModel.AppUserLogin">
+        <MappingFragment StoreEntitySet="AppUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="ProviderDisplayName" ColumnName="ProviderDisplayName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppUserRoles">
+      <EntityTypeMapping TypeName="ComicModel.AppUserRole">
+        <MappingFragment StoreEntitySet="AppUserRoles">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppUsers">
+      <EntityTypeMapping TypeName="ComicModel.AppUser">
+        <MappingFragment StoreEntitySet="AppUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Dob" ColumnName="Dob" />
+          <ScalarProperty Name="UrlImageUser" ColumnName="UrlImageUser" />
+          <ScalarProperty Name="MoreInfo" ColumnName="MoreInfo" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+          <ScalarProperty Name="RefreshToken" ColumnName="RefreshToken" />
+          <ScalarProperty Name="TokenCreated" ColumnName="TokenCreated" />
+          <ScalarProperty Name="TokenExpires" ColumnName="TokenExpires" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="NormalizedUserName" ColumnName="NormalizedUserName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="NormalizedEmail" ColumnName="NormalizedEmail" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="ConcurrencyStamp" ColumnName="ConcurrencyStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEnd" ColumnName="LockoutEnd" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppUserTokens">
+      <EntityTypeMapping TypeName="ComicModel.AppUserToken">
+        <MappingFragment StoreEntitySet="AppUserTokens">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Authors">
+      <EntityTypeMapping TypeName="ComicModel.Author">
+        <MappingFragment StoreEntitySet="Authors">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NameAuthor" ColumnName="NameAuthor" />
+          <ScalarProperty Name="DifferentName" ColumnName="DifferentName" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="SeoAlias" ColumnName="SeoAlias" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="ComicModel.Category">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsShowHome" ColumnName="IsShowHome" />
+          <ScalarProperty Name="UrlImageCategory" ColumnName="UrlImageCategory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChapterComics">
+      <EntityTypeMapping TypeName="ComicModel.ChapterComic">
+        <MappingFragment StoreEntitySet="ChapterComics">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ComicId" ColumnName="ComicId" />
+          <ScalarProperty Name="NameChapter" ColumnName="NameChapter" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="SeoAlias" ColumnName="SeoAlias" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comics">
+      <EntityTypeMapping TypeName="ComicModel.Comic">
+        <MappingFragment StoreEntitySet="Comics">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NameComic" ColumnName="NameComic" />
+          <ScalarProperty Name="DifferentNameComic" ColumnName="DifferentNameComic" />
+          <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+          <ScalarProperty Name="UrlCoverImageComic" ColumnName="UrlCoverImageComic" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IdNewChapter" ColumnName="IdNewChapter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetailCategories">
+      <EntityTypeMapping TypeName="ComicModel.DetailCategory">
+        <MappingFragment StoreEntitySet="DetailCategories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="NameCategory" ColumnName="NameCategory" />
+          <ScalarProperty Name="SeoDescription" ColumnName="SeoDescription" />
+          <ScalarProperty Name="SeoTitle" ColumnName="SeoTitle" />
+          <ScalarProperty Name="SeoAlias" ColumnName="SeoAlias" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetailComics">
+      <EntityTypeMapping TypeName="ComicModel.DetailComic">
+        <MappingFragment StoreEntitySet="DetailComics">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ComicId" ColumnName="ComicId" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="CountFollow" ColumnName="CountFollow" />
+          <ScalarProperty Name="CountRating" ColumnName="CountRating" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="SeoDescription" ColumnName="SeoDescription" />
+          <ScalarProperty Name="SeoTitle" ColumnName="SeoTitle" />
+          <ScalarProperty Name="SeoAlias" ColumnName="SeoAlias" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genders">
+      <EntityTypeMapping TypeName="ComicModel.Gender">
+        <MappingFragment StoreEntitySet="Genders">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NameGender" ColumnName="NameGender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HistoryReadComicOfUsers">
+      <EntityTypeMapping TypeName="ComicModel.HistoryReadComicOfUser">
+        <MappingFragment StoreEntitySet="HistoryReadComicOfUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
+          <ScalarProperty Name="ComicId" ColumnName="ComicId" />
+          <ScalarProperty Name="ChapterId" ColumnName="ChapterId" />
+          <ScalarProperty Name="DateRead" ColumnName="DateRead" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ListOfComicsUsersFollows">
+      <EntityTypeMapping TypeName="ComicModel.ListOfComicsUsersFollow">
+        <MappingFragment StoreEntitySet="ListOfComicsUsersFollows">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
+          <ScalarProperty Name="ComicId" ColumnName="ComicId" />
+          <ScalarProperty Name="DateFollow" ColumnName="DateFollow" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Statuses">
+      <EntityTypeMapping TypeName="ComicModel.Status">
+        <MappingFragment StoreEntitySet="Statuses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NameStatus" ColumnName="NameStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UrlImageComics">
+      <EntityTypeMapping TypeName="ComicModel.UrlImageComic">
+        <MappingFragment StoreEntitySet="UrlImageComics">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ChapterComicId" ColumnName="ChapterComicId" />
+          <ScalarProperty Name="UrlImageChapterComic" ColumnName="UrlImageChapterComic" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AuthorInDetailComics" TypeName="ComicModel.AuthorInDetailComics" StoreEntitySet="AuthorInDetailComics">
+      <EndProperty Name="Authors">
+        <ScalarProperty Name="Id" ColumnName="AuthorId" />
+      </EndProperty>
+      <EndProperty Name="DetailComics">
+        <ScalarProperty Name="Id" ColumnName="DetailComicId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CategoryInDetailComics" TypeName="ComicModel.CategoryInDetailComics" StoreEntitySet="CategoryInDetailComics">
+      <EndProperty Name="Categories">
+        <ScalarProperty Name="Id" ColumnName="CategoryId" />
+      </EndProperty>
+      <EndProperty Name="DetailComics">
+        <ScalarProperty Name="Id" ColumnName="DetailComicId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

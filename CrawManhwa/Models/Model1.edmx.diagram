@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="185552036c394bd498a747ec52c66c40" Name="Diagram1">
+        <EntityTypeShape EntityType="ComicModel.C__EFMigrationsHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComicModel.AppRoleClaim" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComicModel.AppRole" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComicModel.AppUserClaim" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComicModel.AppUserLogin" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComicModel.AppUserRole" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComicModel.AppUser" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComicModel.AppUserToken" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComicModel.Author" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComicModel.Category" Width="1.5" PointX="0.75" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComicModel.ChapterComic" Width="1.5" PointX="3.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComicModel.Comic" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComicModel.DetailCategory" Width="1.5" PointX="3" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComicModel.DetailComic" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComicModel.Gender" Width="1.5" PointX="1.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComicModel.HistoryReadComicOfUser" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComicModel.ListOfComicsUsersFollow" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComicModel.Status" Width="1.5" PointX="0.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComicModel.UrlImageComic" Width="1.5" PointX="6" PointY="9.25" IsExpanded="true" />
+        <AssociationConnector Association="ComicModel.FK_AppUsers_Genders_GenderId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComicModel.FK_HistoryReadComicOfUsers_AppUsers_AppUserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComicModel.FK_ListOfComicsUsersFollows_AppUsers_AppUserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComicModel.FK_DetailCategories_Categories_CategoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComicModel.FK_HistoryReadComicOfUsers_ChapterComics_ChapterId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComicModel.FK_UrlImageComics_ChapterComics_ChapterComicId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComicModel.FK_DetailComics_Comics_ComicId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComicModel.FK_HistoryReadComicOfUsers_Comics_ComicId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComicModel.FK_ListOfComicsUsersFollows_Comics_ComicId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComicModel.FK_DetailComics_Statuses_StatusId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComicModel.AuthorInDetailComics" ManuallyRouted="false" />
+        <AssociationConnector Association="ComicModel.CategoryInDetailComics" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

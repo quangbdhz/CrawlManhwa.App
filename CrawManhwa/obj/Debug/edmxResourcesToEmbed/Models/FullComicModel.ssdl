@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FullComicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Chapter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdManhwa" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Create_date" Type="datetime" />
+    <Property Name="HightLightChapter" Type="int" Nullable="false" />
+    <Property Name="Views" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Manhwa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UrlImageManhwa" Type="nchar" MaxLength="200" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Create_date" Type="datetime" />
+    <Property Name="Views" Type="int" Nullable="false" />
+    <Property Name="Likes" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UrlImageManhwa">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdChapter" Type="int" Nullable="false" />
+    <Property Name="UrlImage" Type="nchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_IdChapter_UrlImageManhwa_TO_Id_Chapter">
+    <End Role="Chapter" Type="Self.Chapter" Multiplicity="1" />
+    <End Role="UrlImageManhwa" Type="Self.UrlImageManhwa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chapter">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UrlImageManhwa">
+        <PropertyRef Name="IdChapter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdManhwa_Chapter_TO_Id_Manhwa">
+    <End Role="Manhwa" Type="Self.Manhwa" Multiplicity="1" />
+    <End Role="Chapter" Type="Self.Chapter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manhwa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Chapter">
+        <PropertyRef Name="IdManhwa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FullComicModelStoreContainer">
+    <EntitySet Name="Chapter" EntityType="Self.Chapter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Manhwa" EntityType="Self.Manhwa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UrlImageManhwa" EntityType="Self.UrlImageManhwa" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_IdChapter_UrlImageManhwa_TO_Id_Chapter" Association="Self.FK_IdChapter_UrlImageManhwa_TO_Id_Chapter">
+      <End Role="Chapter" EntitySet="Chapter" />
+      <End Role="UrlImageManhwa" EntitySet="UrlImageManhwa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdManhwa_Chapter_TO_Id_Manhwa" Association="Self.FK_IdManhwa_Chapter_TO_Id_Manhwa">
+      <End Role="Manhwa" EntitySet="Manhwa" />
+      <End Role="Chapter" EntitySet="Chapter" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

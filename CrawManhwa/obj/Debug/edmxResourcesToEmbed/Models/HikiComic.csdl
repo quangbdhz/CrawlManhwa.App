@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HikiComicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Active" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Chapter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdManhwa" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="HightLightChapter" Type="Int32" Nullable="false" />
+    <Property Name="Views" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Manhwa" Relationship="Self.FK__Chapter__IdManhw__3A81B327" FromRole="Chapter" ToRole="Manhwa" />
+    <NavigationProperty Name="UrlImageManhwas" Relationship="Self.FK__UrlImageM__IdCha__3D5E1FD2" FromRole="Chapter" ToRole="UrlImageManhwa" />
+  </EntityType>
+  <EntityType Name="Manhwa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrlImageManhwa" Type="String" MaxLength="300" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="UrlCoverImage" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Author" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Category" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Views" Type="Int32" Nullable="false" />
+    <Property Name="Likes" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Chapters" Relationship="Self.FK__Chapter__IdManhw__3A81B327" FromRole="Manhwa" ToRole="Chapter" />
+  </EntityType>
+  <EntityType Name="UrlImageManhwa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdChapter" Type="Int32" Nullable="false" />
+    <Property Name="UrlImage" Type="String" MaxLength="7800" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Chapter" Relationship="Self.FK__UrlImageM__IdCha__3D5E1FD2" FromRole="UrlImageManhwa" ToRole="Chapter" />
+  </EntityType>
+  <Association Name="FK__Chapter__IdManhw__3A81B327">
+    <End Role="Manhwa" Type="Self.Manhwa" Multiplicity="1" />
+    <End Role="Chapter" Type="Self.Chapter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manhwa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Chapter">
+        <PropertyRef Name="IdManhwa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UrlImageM__IdCha__3D5E1FD2">
+    <End Role="Chapter" Type="Self.Chapter" Multiplicity="1" />
+    <End Role="UrlImageManhwa" Type="Self.UrlImageManhwa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chapter">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UrlImageManhwa">
+        <PropertyRef Name="IdChapter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ServerHikiComicEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Chapters" EntityType="Self.Chapter" />
+    <EntitySet Name="Manhwas" EntityType="Self.Manhwa" />
+    <EntitySet Name="UrlImageManhwas" EntityType="Self.UrlImageManhwa" />
+    <AssociationSet Name="FK__Chapter__IdManhw__3A81B327" Association="Self.FK__Chapter__IdManhw__3A81B327">
+      <End Role="Manhwa" EntitySet="Manhwas" />
+      <End Role="Chapter" EntitySet="Chapters" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UrlImageM__IdCha__3D5E1FD2" Association="Self.FK__UrlImageM__IdCha__3D5E1FD2">
+      <End Role="Chapter" EntitySet="Chapters" />
+      <End Role="UrlImageManhwa" EntitySet="UrlImageManhwas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

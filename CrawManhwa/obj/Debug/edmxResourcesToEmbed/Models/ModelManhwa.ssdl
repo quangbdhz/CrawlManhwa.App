@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ManhwaComicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="NameManhwa">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UrlImgaeManhwa">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdNameManhwa" Type="int" Nullable="false" />
+    <Property Name="UrlImage" Type="nchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_IdNameManhwa_UrlImgaeManhwa_TO_Id_NameManhwa">
+    <End Role="NameManhwa" Type="Self.NameManhwa" Multiplicity="1" />
+    <End Role="UrlImgaeManhwa" Type="Self.UrlImgaeManhwa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NameManhwa">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UrlImgaeManhwa">
+        <PropertyRef Name="IdNameManhwa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ManhwaComicModelStoreContainer">
+    <EntitySet Name="NameManhwa" EntityType="Self.NameManhwa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UrlImgaeManhwa" EntityType="Self.UrlImgaeManhwa" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_IdNameManhwa_UrlImgaeManhwa_TO_Id_NameManhwa" Association="Self.FK_IdNameManhwa_UrlImgaeManhwa_TO_Id_NameManhwa">
+      <End Role="NameManhwa" EntitySet="NameManhwa" />
+      <End Role="UrlImgaeManhwa" EntitySet="UrlImgaeManhwa" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
